@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps
+spec:
+  destination:
+    name: in-cluster
+    namespace: argocd
+  source:
+    path: apps
+    repoURL: 'https://github.com/morey-tech/argo-cd-app-of-apps-demo'
+    targetRevision: HEAD
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
